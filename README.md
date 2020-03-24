@@ -26,17 +26,16 @@
   - [✅] Login si register.
      - [✅] Daca nu te loghezi in 30 de secunde primesti kick.
      - [❌] De facut etapele inregistrarii.
-<<<<<<< HEAD
        - [✅] Email.
        - [✅] Varsta.
        - [✅] Sex.
        - [❌] Refferal.
      - [✅] Incarcarea datelor din baza de date.
 
-=======
-       - [❌] Email.
-       - [❌] Varsta.
-       - [❌] Sex.
-       - [❌] Refferal.
-     - [❌] Incarcarea datelor din baza de date.
->>>>>>> acc1b25ac5681d0d6eb9ba93f7bbb1656b19219a
+- Pasii inregistrarii: 
+  - Iti introduci o parola ->
+    - Se creaza contul in data de baza, dupa ce s-a introdus contul in baza de date ->
+      - Introduci email-ul, dupa ce s-a introdus mail-ul in baza de date ->
+        - Iti introduci varsta, dupa ce s-a introdus varsta in baza de date ->
+          - Iti alegi sex-ul, dupa ce s-a introdus sex-ul in baza de date ->
+            - Inregistrarea a luat sfarsit si a inceput tutorialul.
