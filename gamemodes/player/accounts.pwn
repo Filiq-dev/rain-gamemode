@@ -164,8 +164,11 @@ function LoadPlayerData(playerid, login) {
 
     if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid); 
 
+    TextDrawShowForPlayer(playerid, Date);
+    TextDrawShowForPlayer(playerid, Time);
+
     va_SendClientMessage(playerid, COLOR_WHITE, "SERVER: Welcome "EMBED_SERVER_COLOR"%s.", PlayerName(playerid));
 
     SetSpawnInfo(playerid, NO_TEAM, 0, 1568.2250,-1693.5483,5.8906,177.0983, 0, 0, 0, 0, 0, 0);
     SpawnPlayer(playerid);  
-}
+} 

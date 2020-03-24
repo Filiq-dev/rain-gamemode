@@ -683,6 +683,12 @@
 		</member>
 		<member name="F:ASM_RETURN_ADDR_OFFSET">
 		</member>
+		<member name="F:Date">
+			<tagname value="Text"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<referrer name="GeneralServerTimer"/>
+			<referrer name="LoadPlayerData"/>
+		</member>
 		<member name="F:F@o">
 		</member>
 		<member name="F:FALSE">
@@ -885,6 +891,12 @@
 		<member name="F:TRUE">
 			<tagname value="bool"/>
 			<referrer name="YVA2_DummyPush"/>
+		</member>
+		<member name="F:Time">
+			<tagname value="Text"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<referrer name="GeneralServerTimer"/>
+			<referrer name="LoadPlayerData"/>
 		</member>
 		<member name="F:UNIQUE_SYMBOL_DOESNT_EXIST">
 		</member>
@@ -1369,10 +1381,15 @@
 		</member>
 		<member name="F:__file">
 		</member>
+		<member name="F:__file">
+		</member>
 		<member name="F:__time">
 		</member>
 		<member name="F:currentDialogID">
 			<referrer name="Dialog_Open"/>
+		</member>
+		<member name="F:day">
+			<referrer name="GeneralServerTimer"/>
 		</member>
 		<member name="F:gBase">
 			<referrer name="CodeScanAddSwitchTarget"/>
@@ -1533,6 +1550,9 @@
 			<referrer name="Indirect_DePtr_"/>
 			<referrer name="Indirect_Init"/>
 		</member>
+		<member name="F:hour">
+			<referrer name="GeneralServerTimer"/>
+		</member>
 		<member name="F:insn_table">
 			<referrer name="GetOpcodeInstructionInformation"/>
 			<referrer name="GetOpcodeInstructionName"/>
@@ -1555,6 +1575,12 @@
 		</member>
 		<member name="F:iterstart@Until">
 		</member>
+		<member name="F:minute">
+			<referrer name="GeneralServerTimer"/>
+		</member>
+		<member name="F:month">
+			<referrer name="GeneralServerTimer"/>
+		</member>
 		<member name="F:opcode_table">
 			<tagname value="Opcode"/>
 			<referrer name="InitOpcodeTable"/>
@@ -1567,6 +1593,9 @@
 			<referrer name="RelocateOpcode"/>
 			<referrer name="UnrelocateOpcode"/>
 		</member>
+		<member name="F:seconds">
+			<referrer name="GeneralServerTimer"/>
+		</member>
 		<member name="F:size_l">
 			<remarks>  <p>Because of the strange way we manipulate the stack, this function actually  gets called twice as often as you would expect.  Essentially, for this  (psudo-)loop:</p>  <code>  for (new i = iter_func(); Iter_YieldLoop(); )                              <br />  {                                                                          <br />  }  </code>  <p>The loop is entered and <c>iter_func()</c> is called.  This indirectly  calls <c>yield</c>, which returns to the call point of that function.  The  loop check is then entered and <c>Iter_YieldLoop()</c> is called.  Depending  on if <c>yield</c> was actually used, the main loop body is entered.  At the  end of that iteration, the loop check is run again and so  <c>Iter_YieldLoop()</c> is called again.</p>  <p>This is where it gets wierd!</p>  <p><c>Iter_YieldLoop()</c> does a stack copy and a jump in to the earlier  call to <c>iter_func</c>, whose return address is earlier in the code.  When  a <c>yield</c> is done again, that return is to the first part of the  <c>for</c> loop, which then instantly enters the loop check section and calls  <c>Iter_YieldLoop()</c> again (as a side-effect, saving the iterator value in  the loop variable).</p>  <p>So for <c>N</c> iterations of the loop, <c>Iter_YieldLoop()</c> is called  <c>2N + 1</c> times, and should be made aware of which phase of its calls it  is in.</p>  <p>This is, of course, made more complicated by nested loops, but that just  means we need to store the state on our own stack.</p>  </remarks> 
 		</member>
@@ -1578,6 +1607,9 @@
 		</member>
 		<member name="F:using_deprecated_itertag_syntax">
 			<tagname value="bool"/>
+		</member>
+		<member name="F:year">
+			<referrer name="GeneralServerTimer"/>
 		</member>
 
 		<!-- functions -->
@@ -2107,6 +2139,18 @@
 			<dependency name="gSQL"/>
 			<dependency name="mysql_close"/>
 		</member>
+		<member name="M:@yH_OnGameModeInit@002" syntax="@yH_OnGameModeInit@002()">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<dependency name="Date"/>
+			<dependency name="TextDrawColor"/>
+			<dependency name="TextDrawCreate"/>
+			<dependency name="TextDrawFont"/>
+			<dependency name="TextDrawLetterSize"/>
+			<dependency name="TextDrawSetOutline"/>
+			<dependency name="TextDrawSetShadow"/>
+			<dependency name="Time"/>
+		</member>
 		<member name="M:@yH_OnGameModeInit@003" syntax="@yH_OnGameModeInit@003()">
 			<attribute name="public"/>
 			<stacksize value="10"/>
@@ -2222,6 +2266,15 @@
 			<dependency name="Iterator@Player"/>
 			<dependency name="Iterator@Vehicle"/>
 			<remarks>  Sets up all existing iterators.  Does nothing for "XXLocal" ones, since they  are by definition empty when a script starts.  </remarks> 
+		</member>
+		<member name="M:@yT_GeneralServerTimer" syntax="@yT_GeneralServerTimer(g, p)">
+			<attribute name="public"/>
+			<stacksize value="7"/>
+			<dependency name="_Timer_I"/>
+			<param name="g">
+			</param>
+			<param name="p">
+			</param>
 		</member>
 		<member name="M:@y_HOnPlayerCommandText" syntax="@y_HOnPlayerCommandText()">
 			<attribute name="public"/>
@@ -7085,6 +7138,22 @@
 			<param name="style">
 			</param>
 		</member>
+		<member name="M:GeneralServerTimer" syntax="GeneralServerTimer()">
+			<attribute name="public"/>
+			<stacksize value="63"/>
+			<dependency name="Date"/>
+			<dependency name="TextDrawSetString"/>
+			<dependency name="Time"/>
+			<dependency name="day"/>
+			<dependency name="format"/>
+			<dependency name="getdate"/>
+			<dependency name="gettime"/>
+			<dependency name="hour"/>
+			<dependency name="minute"/>
+			<dependency name="month"/>
+			<dependency name="seconds"/>
+			<dependency name="year"/>
+		</member>
 		<member name="M:GetAmxAddress" syntax="GetAmxAddress()">
 			<stacksize value="5"/>
 			<referrer name="ReadAmxCell"/>
@@ -10262,6 +10331,7 @@
 			<referrer name="dialog_DialogLogin"/>
 			<referrer name="FinishRegister"/>
 			<dependency name="operator*(_no_itertag:,_:)"/>
+			<dependency name="Date"/>
 			<dependency name="FALSE"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
@@ -10271,6 +10341,8 @@
 			<dependency name="PlayerInfo"/>
 			<dependency name="SetSpawnInfo"/>
 			<dependency name="SpawnPlayer"/>
+			<dependency name="TextDrawShowForPlayer"/>
+			<dependency name="Time"/>
 			<dependency name="cache_get_field_content"/>
 			<dependency name="pEmail"/>
 			<dependency name="pName"/>
@@ -12468,10 +12540,20 @@
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,File,Float,Text3D} </paraminfo>
 			</param>
 		</member>
+		<member name="M:TextDrawColor" syntax="TextDrawColor(text, color)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+		</member>
 		<member name="M:TextDrawCreate" syntax="TextDrawCreate(x, y, text[])">
 			<tagname value="Text"/>
 			<attribute name="native"/>
 			<referrer name="va_TextDrawCreate"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
 			<param name="x">
 				<paraminfo>Float </paraminfo>
 			</param>
@@ -12480,6 +12562,65 @@
 			</param>
 			<param name="text">
 				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawFont" syntax="TextDrawFont(text, font)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="font">
+			</param>
+		</member>
+		<member name="M:TextDrawLetterSize" syntax="TextDrawLetterSize(text, x, y)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawSetOutline" syntax="TextDrawSetOutline(text, size)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+		</member>
+		<member name="M:TextDrawSetShadow" syntax="TextDrawSetShadow(text, size)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+		</member>
+		<member name="M:TextDrawSetString" syntax="TextDrawSetString(text, string[])">
+			<attribute name="native"/>
+			<referrer name="GeneralServerTimer"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="string">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:TextDrawShowForPlayer" syntax="TextDrawShowForPlayer(playerid, text)">
+			<attribute name="native"/>
+			<referrer name="LoadPlayerData"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
 			</param>
 		</member>
 		<member name="M:ThirdParty_OnCodeInit" syntax="ThirdParty_OnCodeInit()">
@@ -13220,6 +13361,7 @@
 		</member>
 		<member name="M:_Timer_I" syntax="_Timer_I(func[], interval, action, &amp;result)">
 			<stacksize value="6"/>
+			<referrer name="@yT_GeneralServerTimer"/>
 			<dependency name="KillTimer"/>
 			<dependency name="O@"/>
 			<param name="func">
@@ -13783,6 +13925,7 @@
 			<referrer name="Debug_PrintArray"/>
 			<referrer name="__TU"/>
 			<referrer name="va_return"/>
+			<referrer name="GeneralServerTimer"/>
 			<referrer name="OnPlayerDataLoaded"/>
 			<referrer name="dialog_DialogEmail"/>
 			<param name="output">
@@ -13859,6 +14002,19 @@
 			<param name="index">
 			</param>
 		</member>
+		<member name="M:getdate" syntax="getdate(&amp;year, &amp;month, &amp;day)">
+			<attribute name="native"/>
+			<referrer name="GeneralServerTimer"/>
+			<param name="year">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="month">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="day">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+		</member>
 		<member name="M:getproperty" syntax="getproperty(id, name[], value, string[])">
 			<attribute name="native"/>
 			<referrer name="C@"/>
@@ -13879,6 +14035,7 @@
 		<member name="M:gettime" syntax="gettime(&amp;hour, &amp;minute, &amp;second)">
 			<attribute name="native"/>
 			<referrer name="y_profile_WTF"/>
+			<referrer name="GeneralServerTimer"/>
 			<param name="hour">
 				<paraminfo> &amp; </paraminfo>
 			</param>

@@ -10,6 +10,7 @@
 
 #include "utils/defines.pwn"
 #include "utils/colour.pwn"
+#include "utils/gui.pwn"
 #include "utils/global-functions.pwn"
 
 #include "server/core.pwn" 

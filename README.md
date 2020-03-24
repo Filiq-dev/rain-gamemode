@@ -4,6 +4,7 @@
     - utils
       - defines.pwn
       - colour.pwn
+      - gui.pwn
       - global-functions.pwn
     - server
       - core.pwn
@@ -22,7 +23,11 @@
   - [❌] streamer
 
 - Changelogs:
-  - [✅] Conexiunea cu baza de date
+  - ✅ Facut.
+  - ✔ Testat.
+  - ❌ De facut.
+
+  - [✔] Conexiunea cu baza de date
   - [✅] Login si register.
      - [✅] Daca nu te loghezi in 30 de secunde primesti kick.
      - [❌] De facut etapele inregistrarii.
@@ -31,6 +36,17 @@
        - [✅] Sex.
        - [❌] Refferal.
      - [✅] Incarcarea datelor din baza de date.
+  - [✅] Adaugata data si ora.
+  - [❌] De testat tot ce s-a facut pana acum.
+  - [❌] Logo in dreapta cu nume.
+  - [❌] Licente pentru: - Arme
+                          - Masina.
+                          - Barca.
+                          - Avion.
+  - [❌] De facut procesorul de comenzi.
+  - [❌] DMV System.
+  - [❌] De facut setarile serverului pe SQL.
+  - [❌] De setat spawn-ul.
 
 - Pasii inregistrarii: 
   - Iti introduci o parola ->
