@@ -79,28 +79,93 @@ Dialog:DialogRegister(playerid, response, listitem, inputtext[]) {
 
     new query[221];
     mysql_format(gSQL, query, sizeof query, "INSERT INTO `users` (`username`, `password`, `salt`) VALUES ('%e', '%s', '%e')", PlayerInfo[playerid][pName], PlayerInfo[playerid][pPassword], PlayerInfo[playerid][pSalt]);
-    mysql_tquery(gSQL, query, "OnPlayerRegister", "d", playerid);
+    mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 4);
     
+    return true;
+} 
+
+Dialog:DialogEmail(playerid, response, listitem, inputtext[]) {
+    if(!response) return Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Introducerea unui email este obligatorie!", "Continua", "");
+
+    new len = strlen(inputtext);
+    if(len > 250)
+        return Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Email-ul introdus de tine este prea mare, te rugam sa introduci altul.", "Continua", "");
+
+    if(IsValidMailAddr(inputtext)) {
+        new email_escape[251];
+        mysql_escape_string(inputtext, email_escape);
+        format(PlayerInfo[playerid][pEmail], len+5, email_escape);
+
+        new query[100];
+        mysql_format(gSQL, query, sizeof query, "UPDATE `users` SET `Email` = '%s' WHERE `id` = '%d'", email_escape, PlayerInfo[playerid][pSQLID]);
+        mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 1);
+    }
+    else Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Email-ul introdus de tine este invalid!", "Continua", "");
+
     return true;
 }
 
-function OnPlayerRegister(playerid) { 
-	PlayerInfo[playerid][pSQLID] = cache_insert_id();
-    
-    LoadPlayerData(playerid, 0);
+Dialog:DialogAge(playerid, response, listitem, inputtext[]) {
+    if(!response) return Dialog_Show(playerid, DialogAge, DIALOG_STYLE_INPUT, "Varsta", "Te rugam sa iti introduci varsta ta.", "Continua", "");
 
-	return 1;
+    new age = strval(inputtext);
+    
+    PlayerInfo[playerid][pAge] = age;
+
+    new query[100];
+    mysql_format(gSQL, query, sizeof query, "UPDATE `users` SET `Age` = '%d' WHERE `id` = '%d'", age, PlayerInfo[playerid][pSQLID]);
+    mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 2);
+
+    return true;
+}
+
+Dialog:DialogSex(playerid, response, listitem, inputtext[]) {
+    PlayerInfo[playerid][pSex] = response;
+
+    new query[100];
+    mysql_format(gSQL, query, sizeof query, "UPDATE `users` SET `Sex` = '%d' WHERE `id` = '%d'", response, PlayerInfo[playerid][pSQLID]);
+    mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 3);
+
+    return true;
+}
+
+function FinishRegister(playerid) {
+    // StartTutorial(playerid);
+    LoadPlayerData(playerid, 0); // de pus la sfarsitul tutorialului
+}
+
+function RegisterQuerys(playerid, step) {
+    if(Iter_Contains(Player, playerid)) {
+        switch(step) {
+            case 1: // update email in db
+                Dialog_Show(playerid, DialogAge, DIALOG_STYLE_INPUT, "Varsta", "Te rugam sa iti introduci varsta ta.", "Continua", "");
+            case 2:
+                Dialog_Show(playerid, DialogSex, DIALOG_STYLE_MSGBOX, "Sex", "Te rugam sa iti alegi sex-ul.", "Baiat", "Fata");
+            case 3:
+                FinishRegister(playerid);
+            
+            case 4: {
+                PlayerInfo[playerid][pSQLID] = cache_insert_id();
+     
+                if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid); 
+
+                Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Pentru a putea sa iti resetezi parola in caz ca o uiti, te rugam sa introduci un mail.", "Continua", "");
+            }
+        }
+    }
 }
 
 function LoadPlayerData(playerid, login) {
 
     if(login == 1) {
-
+        cache_get_field_content(0, "email", PlayerInfo[playerid][pEmail]);
+        cache_get_field_content(0, "username", PlayerInfo[playerid][pUsername]);
     }
 
-    if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid);
+    if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid); 
 
-    // SetSpawnInfo(playerid, NO_TEAM, 0, Player[playerid][X_Pos], Player[playerid][Y_Pos], Player[playerid][Z_Pos], Player[playerid][A_Pos], 0, 0, 0, 0, 0, 0);
-    // SpawnPlayer(playerid); 
+    va_SendClientMessage(playerid, COLOR_WHITE, "SERVER: Welcome "EMBED_SERVER_COLOR"%s.", PlayerName(playerid));
 
+    SetSpawnInfo(playerid, NO_TEAM, 0, 1568.2250,-1693.5483,5.8906,177.0983, 0, 0, 0, 0, 0, 0);
+    SpawnPlayer(playerid);  
 }

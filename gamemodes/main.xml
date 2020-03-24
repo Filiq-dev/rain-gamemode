@@ -270,7 +270,7 @@
 			<member name="C:__E_COMPILER_ENUM_AFTER" value="3">
 			</member>
 		</member>
-		<member name="T:pData" value="387">
+		<member name="T:pData" value="389">
 			<tagname value="pData"/>
 			<member name="C:pSQLID" value="0">
 			</member>
@@ -288,6 +288,10 @@
 			</member>
 			<member name="C:pEmail" value="131">
 				<size value="256"/>
+			</member>
+			<member name="C:pAge" value="387">
+			</member>
+			<member name="C:pSex" value="388">
 			</member>
 			<referrer name="@yH_OnPlayerConnect@004"/>
 		</member>
@@ -477,6 +481,7 @@
 			<referrer name="@yH_OnPlayerDisconnect@001"/>
 			<referrer name="Iter_DestroyActor"/>
 			<referrer name="Iter_DestroyVehicle"/>
+			<referrer name="IsValidMailAddr"/>
 		</member>
 		<member name="C:true" value="1">
 			<tagname value="bool"/>
@@ -522,6 +527,7 @@
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="_Timer_D"/>
+			<referrer name="IsValidMailAddr"/>
 			<referrer name="CloseServer"/>
 			<referrer name="@yH_OnGameModeInit@003"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
@@ -529,6 +535,9 @@
 			<referrer name="OnPlayerDataLoaded"/>
 			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="dialog_DialogSex"/>
 		</member>
 
 		<!-- variables -->
@@ -691,6 +700,8 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 		</member>
 		<member name="F:FLOAT_TAG_">
 			<tagname value="Float"/>
@@ -751,6 +762,8 @@
 			<referrer name="@yH_OnPlayerConnect@001"/>
 			<referrer name="Iter_OPDCInternal"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 		</member>
 		<member name="F:Iter_Single@Vehicle">
 			<referrer name="@yH_OnScriptInit@001"/>
@@ -804,6 +817,8 @@
 			<referrer name="Iter_OPDCInternal"/>
 			<referrer name="_Timer_D"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 			Create the internal iterators. 
 		</member>
 		<member name="F:Iterator@Powers">
@@ -856,7 +871,11 @@
 			<referrer name="OnPlayerDataLoaded"/>
 			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
-			<referrer name="OnPlayerRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="dialog_DialogSex"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 		</member>
 		<member name="F:Q@">
 			<referrer name="C@"/>
@@ -1445,6 +1464,9 @@
 			<referrer name="@yH_OnGameModeExit@003"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="dialog_DialogSex"/>
 		</member>
 		<member name="F:g_MysqlRaceCheck">
 			<referrer name="@yH_OnPlayerConnect@004"/>
@@ -1581,6 +1603,8 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 			<param name="a">
 				<paraminfo>_no_itertag </paraminfo>
 			</param>
@@ -6624,6 +6648,9 @@
 			<referrer name="OnPlayerDataLoaded"/>
 			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="RegisterQuerys"/>
 			<dependency name="SetPVarString"/>
 			<dependency name="ShowPlayerDialog"/>
 			<dependency name="currentDialogID"/>
@@ -7016,6 +7043,14 @@
 			<param name="master">
 			</param>
 			<param name="heapptr">
+			</param>
+		</member>
+		<member name="M:FinishRegister" syntax="FinishRegister(playerid)">
+			<attribute name="public"/>
+			<stacksize value="5"/>
+			<referrer name="RegisterQuerys"/>
+			<dependency name="LoadPlayerData"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:G@" syntax="G@(...)">
@@ -9024,6 +9059,16 @@
 			<param name="actorid">
 			</param>
 		</member>
+		<member name="M:IsValidMailAddr" syntax="IsValidMailAddr(addr[])">
+			<stacksize value="6"/>
+			<referrer name="dialog_DialogEmail"/>
+			<dependency name="false"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<param name="addr">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:Iter_ActorDo" syntax="Iter_ActorDo(add, actorid)">
 			<stacksize value="7"/>
 			<referrer name="@@Iter_ActorDo"/>
@@ -9127,6 +9172,8 @@
 			<referrer name="Iter_CreateVehicle"/>
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 			<dependency name="cellmin"/>
 			<param name="count">
 				<paraminfo> &amp; </paraminfo>
@@ -9287,6 +9334,8 @@
 		<member name="M:Iter_Contains_InternalC" syntax="Iter_Contains_InternalC(array[], size, value)">
 			<stacksize value="1"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="RegisterQuerys"/>
+			<referrer name="LoadPlayerData"/>
 			<param name="array">
 				<paraminfo> [] </paraminfo>
 				iterator data.
@@ -10209,9 +10258,24 @@
 		</member>
 		<member name="M:LoadPlayerData" syntax="LoadPlayerData(playerid, login)">
 			<attribute name="public"/>
-			<stacksize value="1"/>
+			<stacksize value="15"/>
 			<referrer name="dialog_DialogLogin"/>
-			<referrer name="OnPlayerRegister"/>
+			<referrer name="FinishRegister"/>
+			<dependency name="operator*(_no_itertag:,_:)"/>
+			<dependency name="FALSE"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_Single@Player"/>
+			<dependency name="Iterator@Player"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="SetSpawnInfo"/>
+			<dependency name="SpawnPlayer"/>
+			<dependency name="cache_get_field_content"/>
+			<dependency name="pEmail"/>
+			<dependency name="pName"/>
+			<dependency name="pUsername"/>
+			<dependency name="va_SendClientMessage"/>
 			<param name="playerid">
 			</param>
 			<param name="login">
@@ -11028,17 +11092,6 @@
 			<param name="pickupid">
 			</param>
 		</member>
-		<member name="M:OnPlayerRegister" syntax="OnPlayerRegister(playerid)">
-			<attribute name="public"/>
-			<stacksize value="5"/>
-			<dependency name="LoadPlayerData"/>
-			<dependency name="PlayerInfo"/>
-			<dependency name="PlayerInfo"/>
-			<dependency name="cache_insert_id"/>
-			<dependency name="pSQLID"/>
-			<param name="playerid">
-			</param>
-		</member>
 		<member name="M:OnPlayerRequestClass" syntax="OnPlayerRequestClass(playerid, classid)">
 			<stacksize value="1"/>
 			<param name="playerid">
@@ -11500,6 +11553,26 @@
 			<referrer name="ReadAmxCell"/>
 			<dependency name="AbsToRel"/>
 			<param name="address">
+			</param>
+		</member>
+		<member name="M:RegisterQuerys" syntax="RegisterQuerys(playerid, step)">
+			<attribute name="public"/>
+			<stacksize value="10"/>
+			<dependency name="operator*(_no_itertag:,_:)"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="FALSE"/>
+			<dependency name="FinishRegister"/>
+			<dependency name="Iter_Add_InternalC"/>
+			<dependency name="Iter_Contains_InternalC"/>
+			<dependency name="Iter_Single@Player"/>
+			<dependency name="Iterator@Player"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="cache_insert_id"/>
+			<dependency name="pSQLID"/>
+			<param name="playerid">
+			</param>
+			<param name="step">
 			</param>
 		</member>
 		<member name="M:RelToAbs" syntax="RelToAbs(address)">
@@ -12066,6 +12139,40 @@
 				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
+		<member name="M:SetSpawnInfo" syntax="SetSpawnInfo(playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)">
+			<attribute name="native"/>
+			<referrer name="LoadPlayerData"/>
+			<param name="playerid">
+			</param>
+			<param name="team">
+			</param>
+			<param name="skin">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rotation">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weapon1">
+			</param>
+			<param name="weapon1_ammo">
+			</param>
+			<param name="weapon2">
+			</param>
+			<param name="weapon2_ammo">
+			</param>
+			<param name="weapon3">
+			</param>
+			<param name="weapon3_ammo">
+			</param>
+		</member>
 		<member name="M:SetTimerEx" syntax="SetTimerEx(funcname[], interval, repeating, format[], ...)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerDisconnect@001"/>
@@ -12213,6 +12320,12 @@
 				<paraminfo> [][] </paraminfo>
 			</param>
 			<param name="...">
+			</param>
+		</member>
+		<member name="M:SpawnPlayer" syntax="SpawnPlayer(playerid)">
+			<attribute name="native"/>
+			<referrer name="LoadPlayerData"/>
+			<param name="playerid">
 			</param>
 		</member>
 		<member name="M:StrToLower" syntax="StrToLower(str[], len)">
@@ -13238,6 +13351,7 @@
 		<member name="M:cache_get_field_content" syntax="cache_get_field_content(row, field_name[], destination[], connectionHandle, max_len)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerDataLoaded"/>
+			<referrer name="LoadPlayerData"/>
 			<param name="row">
 			</param>
 			<param name="field_name">
@@ -13259,7 +13373,7 @@
 		</member>
 		<member name="M:cache_insert_id" syntax="cache_insert_id(connectionHandle)">
 			<attribute name="native"/>
-			<referrer name="OnPlayerRegister"/>
+			<referrer name="RegisterQuerys"/>
 			<param name="connectionHandle">
 			</param>
 		</member>
@@ -13371,6 +13485,55 @@
 			<param name="v">
 			</param>
 		</member>
+		<member name="M:dialog_DialogAge" syntax="dialog_DialogAge(playerid, response, listitem, inputtext[])">
+			<attribute name="public"/>
+			<stacksize value="110"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="gSQL"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="pAge"/>
+			<dependency name="pSQLID"/>
+			<dependency name="strval"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+			<param name="inputtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:dialog_DialogEmail" syntax="dialog_DialogEmail(playerid, response, listitem, inputtext[])">
+			<attribute name="public"/>
+			<stacksize value="361"/>
+			<dependency name="Dialog_Open"/>
+			<dependency name="IsValidMailAddr"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="format"/>
+			<dependency name="gSQL"/>
+			<dependency name="mysql_escape_string"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="pEmail"/>
+			<dependency name="pSQLID"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+			<param name="inputtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:dialog_DialogLogin" syntax="dialog_DialogLogin(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
 			<stacksize value="75"/>
@@ -13412,6 +13575,27 @@
 			<dependency name="pSalt"/>
 			<dependency name="random"/>
 			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+			<param name="inputtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:dialog_DialogSex" syntax="dialog_DialogSex(playerid, response, listitem, inputtext[])">
+			<attribute name="public"/>
+			<stacksize value="109"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="PlayerInfo"/>
+			<dependency name="gSQL"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="pSQLID"/>
+			<dependency name="pSex"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -13600,6 +13784,7 @@
 			<referrer name="__TU"/>
 			<referrer name="va_return"/>
 			<referrer name="OnPlayerDataLoaded"/>
+			<referrer name="dialog_DialogEmail"/>
 			<param name="output">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -13988,10 +14173,27 @@
 			<param name="connectionHandle">
 			</param>
 		</member>
+		<member name="M:mysql_escape_string" syntax="mysql_escape_string(source[], destination[], connectionHandle, max_len)">
+			<attribute name="native"/>
+			<referrer name="dialog_DialogEmail"/>
+			<param name="source">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="destination">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="connectionHandle">
+			</param>
+			<param name="max_len">
+			</param>
+		</member>
 		<member name="M:mysql_format" syntax="mysql_format(connectionHandle, output[], len, format[], ...)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="dialog_DialogSex"/>
 			<param name="connectionHandle">
 			</param>
 			<param name="output">
@@ -14020,6 +14222,9 @@
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
+			<referrer name="dialog_DialogAge"/>
+			<referrer name="dialog_DialogSex"/>
 			<param name="connectionHandle">
 			</param>
 			<param name="query">
@@ -14343,7 +14548,9 @@
 			<referrer name="Hooks_Collate"/>
 			<referrer name="_Hooks_AddReplacement"/>
 			<referrer name="_Timer_S"/>
+			<referrer name="IsValidMailAddr"/>
 			<referrer name="dialog_DialogRegister"/>
+			<referrer name="dialog_DialogEmail"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -14387,6 +14594,7 @@
 		<member name="M:strval" syntax="strval(string[])">
 			<attribute name="native"/>
 			<referrer name="IPToInt"/>
+			<referrer name="dialog_DialogAge"/>
 			<param name="string">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -14491,6 +14699,7 @@
 		</member>
 		<member name="M:va_SendClientMessage" syntax="va_SendClientMessage(playerid, colour, fmat[], ...)">
 			<stacksize value="159"/>
+			<referrer name="LoadPlayerData"/>
 			<dependency name="SendClientMessage"/>
 			<dependency name="YVA2_DummyPush"/>
 			<dependency name="va_return"/>

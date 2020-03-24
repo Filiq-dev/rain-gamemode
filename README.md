@@ -14,20 +14,28 @@
       - accounts.pwn
 
 - Include-uri si pluginuri de adaugat:
-  [✅] MySQL by BlueG/maddinat0r
-  [✅] Crashdetect by Zeex
-  [✅] easyDialogs by ---
-  [✅] YSI Library by Y-Less
-  [❌] sscanf
-  [❌] streamer
+  - [✅] MySQL by BlueG/maddinat0r
+  - [✅] Crashdetect by Zeex
+  - [✅] easyDialogs by ---
+  - [✅] YSI Library by Y-Less
+  - [❌] sscanf
+  - [❌] streamer
 
 - Changelogs:
-  [✅] Conexiunea cu baza de date
-  [✅] Login si register.
-    - [✅] Daca nu te loghezi in 30 de secunde primesti kick.
-    - [❌] De facut etapele inregistrarii.
-      - [❌] Email.
-      - [❌] Varsta.
-      - [❌] Sex.
-      - [❌] Refferal.
-    - [❌] Incarcarea datelor din baza de date.
+  - [✅] Conexiunea cu baza de date
+  - [✅] Login si register.
+     - [✅] Daca nu te loghezi in 30 de secunde primesti kick.
+     - [❌] De facut etapele inregistrarii.
+       - [✅] Email.
+       - [✅] Varsta.
+       - [✅] Sex.
+       - [❌] Refferal.
+     - [✅] Incarcarea datelor din baza de date.
+
+- Pasii inregistrarii: 
+  - Iti introduci o parola ->
+    - Se creaza contul in data de baza, dupa ce s-a introdus contul in baza de date ->
+      - Introduci email-ul, dupa ce s-a introdus mail-ul in baza de date ->
+        - Iti introduci varsta, dupa ce s-a introdus varsta in baza de date ->
+          - Iti alegi sex-ul, dupa ce s-a introdus sex-ul in baza de date ->
+            - Inregistrarea a luat sfarsit si a inceput tutorialul.
