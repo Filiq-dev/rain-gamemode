@@ -1,0 +1,399 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:24:31] Error: Your password must be changed from the default password, please change it.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:24:59] 
+[10:24:59] Server Plugins
+[10:24:59] --------------
+[10:24:59]  Loading plugin: a_mysql
+[10:24:59]   Failed.
+[10:24:59]  Loaded 0 plugins.
+
+[10:25:00] 
+[10:25:00] Filterscripts
+[10:25:00] ---------------
+[10:25:00]   Loaded 0 filterscripts.
+
+[10:25:00] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:25:00] Number of vehicle models: 0
+[10:25:21] --- Server Shutting Down.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:25:23] 
+[10:25:23] Server Plugins
+[10:25:23] --------------
+[10:25:23]  Loading plugin: mysql
+[10:25:23]   Failed.
+[10:25:23]  Loaded 0 plugins.
+
+[10:25:23] 
+[10:25:23] Filterscripts
+[10:25:23] ---------------
+[10:25:23]   Loaded 0 filterscripts.
+
+[10:25:24] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:25:24] Number of vehicle models: 0
+[10:25:30] --- Server Shutting Down.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:25:31] 
+[10:25:31] Server Plugins
+[10:25:31] --------------
+[10:25:31]  Loading plugin: mysql.dll
+[10:25:31]   Failed.
+[10:25:31]  Loaded 0 plugins.
+
+[10:25:31] 
+[10:25:31] Filterscripts
+[10:25:31] ---------------
+[10:25:31]   Loaded 0 filterscripts.
+
+[10:25:31] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:25:31] Number of vehicle models: 0
+[10:25:43] --- Server Shutting Down.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:26:53] 
+[10:26:53] Server Plugins
+[10:26:53] --------------
+[10:26:53]  Loading plugin: crashdetect
+[10:26:53]   CrashDetect plugin 4.19.4
+[10:26:53]   Loaded.
+[10:26:53]  Loading plugin: mysql
+[10:26:53]   Failed.
+[10:26:53]  Loaded 1 plugins.
+
+[10:26:53] 
+[10:26:53] Filterscripts
+[10:26:53] ---------------
+[10:26:53]   Loaded 0 filterscripts.
+
+[10:26:53] [debug] Run time error 19: "File or function is not found"
+[10:26:53] [debug]  mysql_log
+[10:26:53] [debug]  mysql_connect
+[10:26:53] [debug]  mysql_errno
+[10:26:53] [debug] Run time error 19: "File or function is not found"
+[10:26:53] [debug]  mysql_log
+[10:26:53] [debug]  mysql_connect
+[10:26:53] [debug]  mysql_errno
+[10:26:53] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:26:53] Number of vehicle models: 0
+[10:27:10] [debug] Server received interrupt signal
+[10:27:10] [debug] Native backtrace:
+[10:27:10] [debug] #0 77d320bc in ?? () in C:\WINDOWS\SYSTEM32\ntdll.dll
+[10:27:10] [debug] #1 7643f32f in ?? () in C:\WINDOWS\System32\KERNELBASE.dll
+[10:27:10] [debug] #2 0048d53c in ?? () in samp-server.exe
+[10:27:10] [debug] #3 0049b4a1 in ?? () in samp-server.exe
+[10:27:10] [debug] #4 0049b4b1 in ?? () in samp-server.exe
+[10:27:10] --- Server Shutting Down.
+[10:27:10] [debug] Run time error 19: "File or function is not found"
+[10:27:10] [debug]  mysql_log
+[10:27:10] [debug]  mysql_connect
+[10:27:10] [debug]  mysql_errno
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:27:16] 
+[10:27:16] Server Plugins
+[10:27:16] --------------
+[10:27:16]  Loading plugin: crashdetect
+[10:27:16]   CrashDetect plugin 4.19.4
+[10:27:16]   Loaded.
+[10:27:16]  Loading plugin: mysql
+[10:27:17]  >> plugin.mysql: R39-6 successfully loaded.
+[10:27:17]   Loaded.
+[10:27:17]  Loaded 2 plugins.
+
+[10:27:17] 
+[10:27:17] Filterscripts
+[10:27:17] ---------------
+[10:27:17]   Loaded 0 filterscripts.
+
+[10:27:17]  
+[10:27:17]  ======================================= 
+[10:27:17]  |                                     | 
+[10:27:17]  |    Optimising code, this may take   | 
+[10:27:17]  |        a little bit of time.        | 
+[10:27:17]  |                                     | 
+[10:27:17]  |            Please wait...           | 
+[10:27:17]  |                                     | 
+[10:27:17]  |=====================================| 
+[10:27:17]  |                                     | 
+[10:27:17]  | Note that these optimisations are   | 
+[10:27:17]  | designed to improve performance     | 
+[10:27:17]  | with the JIT plugin, which you are  | 
+[10:27:17]  | not currently using.  Get it here:  | 
+[10:27:17]  |                                     | 
+[10:27:17]  |      https://git.io/jit-plugin      | 
+[10:27:17]  |                                     | 
+[10:27:17]  ======================================= 
+[10:27:17]  
+[10:27:17]  
+[10:27:17]  
+[10:27:17]  
+[10:27:17]  ======================================= 
+[10:27:17]  |                                     | 
+[10:27:17]  |        YSI version 5.03.0689        | 
+[10:27:17]  |        By Alex "Y_Less" Cole        | 
+[10:27:17]  |                                     | 
+[10:27:17]  ======================================= 
+[10:27:17]  
+[10:27:17] Conexiunea cu baza de date nu s-a putut realiza, server-ul se va inchide.
+[10:27:17] [debug] Run time error 20: "Invalid index parameter (bad entry point)"
+[10:27:17] Script[gamemodes/main.amx]: Run time error 20: "Invalid index parameter (bad entry point)"
+[10:27:17] Number of vehicle models: 0
+[10:27:22] --- Server Shutting Down.
+[10:27:22] plugin.mysql: Unloading plugin...
+[10:27:23] plugin.mysql: Plugin unloaded.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:27:26] 
+[10:27:26] Server Plugins
+[10:27:26] --------------
+[10:27:26]  Loading plugin: crashdetect
+[10:27:26]   CrashDetect plugin 4.19.4
+[10:27:26]   Loaded.
+[10:27:26]  Loading plugin: mysql
+[10:27:26]   Failed.
+[10:27:26]  Loaded 1 plugins.
+
+[10:27:26] 
+[10:27:26] Filterscripts
+[10:27:26] ---------------
+[10:27:26]   Loaded 0 filterscripts.
+
+[10:27:26] [debug] Run time error 19: "File or function is not found"
+[10:27:26] [debug]  mysql_log
+[10:27:26] [debug]  mysql_connect
+[10:27:26] [debug]  mysql_errno
+[10:27:26] [debug] Run time error 19: "File or function is not found"
+[10:27:26] [debug]  mysql_log
+[10:27:26] [debug]  mysql_connect
+[10:27:26] [debug]  mysql_errno
+[10:27:26] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:27:26] Number of vehicle models: 0
+[10:27:28] [debug] Server received interrupt signal
+[10:27:28] [debug] Native backtrace:
+[10:27:28] [debug] #0 77d320bc in ?? () in C:\WINDOWS\SYSTEM32\ntdll.dll
+[10:27:28] [debug] #1 7643f32f in ?? () in C:\WINDOWS\System32\KERNELBASE.dll
+[10:27:28] [debug] #2 0048d53c in ?? () in samp-server.exe
+[10:27:28] [debug] #3 0049b4a1 in ?? () in samp-server.exe
+[10:27:28] [debug] #4 0049b4b1 in ?? () in samp-server.exe
+[10:27:28] --- Server Shutting Down.
+[10:27:28] [debug] Run time error 19: "File or function is not found"
+[10:27:28] [debug]  mysql_log
+[10:27:28] [debug]  mysql_connect
+[10:27:28] [debug]  mysql_errno
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:27:29] 
+[10:27:29] Server Plugins
+[10:27:29] --------------
+[10:27:29]  Loading plugin: crashdetect
+[10:27:29]   CrashDetect plugin 4.19.4
+[10:27:29]   Loaded.
+[10:27:29]  Loading plugin: mysql
+[10:27:29]   Failed.
+[10:27:29]  Loaded 1 plugins.
+
+[10:27:30] 
+[10:27:30] Filterscripts
+[10:27:30] ---------------
+[10:27:30]   Loaded 0 filterscripts.
+
+[10:27:30] [debug] Run time error 19: "File or function is not found"
+[10:27:30] [debug]  mysql_log
+[10:27:30] [debug]  mysql_connect
+[10:27:30] [debug]  mysql_errno
+[10:27:30] [debug] Run time error 19: "File or function is not found"
+[10:27:30] [debug]  mysql_log
+[10:27:30] [debug]  mysql_connect
+[10:27:30] [debug]  mysql_errno
+[10:27:30] Script[gamemodes/main.amx]: Run time error 19: "File or function is not found"
+[10:27:30] Number of vehicle models: 0
+[10:27:31] [debug] Server received interrupt signal
+[10:27:31] [debug] Native backtrace:
+[10:27:31] [debug] #0 77d320bc in ?? () in C:\WINDOWS\SYSTEM32\ntdll.dll
+[10:27:31] [debug] #1 7643f32f in ?? () in C:\WINDOWS\System32\KERNELBASE.dll
+[10:27:31] [debug] #2 0048d53c in ?? () in samp-server.exe
+[10:27:31] [debug] #3 0049b4a1 in ?? () in samp-server.exe
+[10:27:31] [debug] #4 0049b4b1 in ?? () in samp-server.exe
+[10:27:31] --- Server Shutting Down.
+[10:27:31] [debug] Run time error 19: "File or function is not found"
+[10:27:31] [debug]  mysql_log
+[10:27:31] [debug]  mysql_connect
+[10:27:31] [debug]  mysql_errno
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:28:05] 
+[10:28:05] Server Plugins
+[10:28:05] --------------
+[10:28:05]  Loading plugin: crashdetect
+[10:28:05]   CrashDetect plugin 4.19.4
+[10:28:05]   Loaded.
+[10:28:05]  Loading plugin: mysql
+[10:28:05]  >> plugin.mysql: R39-6 successfully loaded.
+[10:28:05]   Loaded.
+[10:28:05]  Loaded 2 plugins.
+
+[10:28:05] 
+[10:28:05] Filterscripts
+[10:28:05] ---------------
+[10:28:05]   Loaded 0 filterscripts.
+
+[10:28:05]  
+[10:28:05]  ======================================= 
+[10:28:05]  |                                     | 
+[10:28:05]  |    Optimising code, this may take   | 
+[10:28:05]  |        a little bit of time.        | 
+[10:28:05]  |                                     | 
+[10:28:05]  |            Please wait...           | 
+[10:28:05]  |                                     | 
+[10:28:05]  |=====================================| 
+[10:28:05]  |                                     | 
+[10:28:05]  | Note that these optimisations are   | 
+[10:28:05]  | designed to improve performance     | 
+[10:28:05]  | with the JIT plugin, which you are  | 
+[10:28:05]  | not currently using.  Get it here:  | 
+[10:28:05]  |                                     | 
+[10:28:05]  |      https://git.io/jit-plugin      | 
+[10:28:05]  |                                     | 
+[10:28:05]  ======================================= 
+[10:28:05]  
+[10:28:05]  
+[10:28:05]  
+[10:28:05]  
+[10:28:05]  ======================================= 
+[10:28:05]  |                                     | 
+[10:28:05]  |        YSI version 5.03.0689        | 
+[10:28:05]  |        By Alex "Y_Less" Cole        | 
+[10:28:05]  |                                     | 
+[10:28:05]  ======================================= 
+[10:28:05]  
+[10:28:05] Conexiunea cu baza de date nu s-a putut realiza, server-ul se va inchide.
+[10:28:05] Number of vehicle models: 0
+[10:28:11] --- Server Shutting Down.
+[10:28:11] plugin.mysql: Unloading plugin...
+[10:28:11] plugin.mysql: Plugin unloaded.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7-R2, (C)2005-2015 SA-MP Team
+
+[10:28:25] 
+[10:28:25] Server Plugins
+[10:28:25] --------------
+[10:28:25]  Loading plugin: crashdetect
+[10:28:25]   CrashDetect plugin 4.19.4
+[10:28:25]   Loaded.
+[10:28:25]  Loading plugin: mysql
+[10:28:25]  >> plugin.mysql: R39-6 successfully loaded.
+[10:28:25]   Loaded.
+[10:28:25]  Loaded 2 plugins.
+
+[10:28:25] 
+[10:28:25] Filterscripts
+[10:28:25] ---------------
+[10:28:25]   Loaded 0 filterscripts.
+
+[10:28:26]  
+[10:28:26]  ======================================= 
+[10:28:26]  |                                     | 
+[10:28:26]  |    Optimising code, this may take   | 
+[10:28:26]  |        a little bit of time.        | 
+[10:28:26]  |                                     | 
+[10:28:26]  |            Please wait...           | 
+[10:28:26]  |                                     | 
+[10:28:26]  |=====================================| 
+[10:28:26]  |                                     | 
+[10:28:26]  | Note that these optimisations are   | 
+[10:28:26]  | designed to improve performance     | 
+[10:28:26]  | with the JIT plugin, which you are  | 
+[10:28:26]  | not currently using.  Get it here:  | 
+[10:28:26]  |                                     | 
+[10:28:26]  |      https://git.io/jit-plugin      | 
+[10:28:26]  |                                     | 
+[10:28:26]  ======================================= 
+[10:28:26]  
+[10:28:26]  
+[10:28:26]  
+[10:28:26]  
+[10:28:26]  ======================================= 
+[10:28:26]  |                                     | 
+[10:28:26]  |        YSI version 5.03.0689        | 
+[10:28:26]  |        By Alex "Y_Less" Cole        | 
+[10:28:26]  |                                     | 
+[10:28:26]  ======================================= 
+[10:28:26]  
+[10:28:26] Conexiunea cu baza de date nu s-a putut realiza, server-ul se va inchide.
+[10:28:26] Number of vehicle models: 0
+[10:28:31] --- Server Shutting Down.
+[10:28:31] plugin.mysql: Unloading plugin...
+[10:28:31] plugin.mysql: Plugin unloaded.
