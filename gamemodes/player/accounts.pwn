@@ -13,6 +13,9 @@ hook OnPlayerConnect(playerid) {
     GetPlayerName(playerid, PlayerInfo[playerid][pName], MAX_PLAYER_NAME);
     if(Iter_Contains(Player, playerid)) Iter_Remove(Player, playerid);
 
+    TextDrawShowForPlayer(playerid, logo1);
+    TextDrawShowForPlayer(playerid, logo2);
+
     new query[100];
 	mysql_format(gSQL, query, sizeof query, "SELECT * FROM `users` WHERE `username` = '%e' LIMIT 1", PlayerInfo[playerid][pName]);
 	mysql_tquery(gSQL, query, "OnPlayerDataLoaded", "dd", playerid, g_MysqlRaceCheck[playerid]);
@@ -36,9 +39,8 @@ function OnPlayerDataLoaded(playerid, rackcheck) {
     if(rackcheck != g_MysqlRaceCheck[playerid]) return Kick(playerid);
 
     new string[115];
-	if(cache_num_rows() > 0) {  
-        cache_get_field_content(0, "password", PlayerInfo[playerid][pPassword]);
-        cache_get_field_content(0, "salt", PlayerInfo[playerid][pSalt]);
+	if(cache_num_rows() > 0) {   
+        cache_get_field_content(0, "Salt", PlayerInfo[playerid][pSalt]);
  
 		format(string, sizeof string, "This account (%s) is registered. Please login by entering your password in the field below:", PlayerInfo[playerid][pName]); 
         Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Login", string, "Login", "Abort");
@@ -56,14 +58,11 @@ Dialog:DialogLogin(playerid, response, listitem, inputtext[]) {
     if(!response) return Kick(playerid);
 
     new hashed_pass[65];
-    SHA256_PassHash(inputtext, PlayerInfo[playerid][pSalt], hashed_pass, 65);
+    SHA256_PassHash(inputtext, PlayerInfo[playerid][pSalt], hashed_pass, 65);  
 
-    if(strcmp(hashed_pass, PlayerInfo[playerid][pPassword]) == 0) {    
-        LoadPlayerData(playerid, 1);
-
-        stop LoginTimer[playerid]; 
-    } else
-        Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Login", "Wrong password!\nPlease enter your password in the field below:", "Login", "Abort");
+    new query[150];
+    mysql_format(gSQL, query, sizeof query, "SELECT * FROM `users` WHERE `Username`='%e' AND `Password`='%s' LIMIT 1", PlayerInfo[playerid][pName], hashed_pass);
+    mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 5);
 
     return true;
 }
@@ -72,13 +71,12 @@ Dialog:DialogRegister(playerid, response, listitem, inputtext[]) {
     if (!response) return Kick(playerid);
 
     if (strlen(inputtext) <= 5) return Dialog_Show(playerid, DialogRegister, DIALOG_STYLE_PASSWORD, "Registration", "Your password must be longer than 5 characters!\nPlease enter your password in the field below:", "Register", "Abort");
-
-    // 16 random characters from 33 to 126 (in ASCII) for the salt
+ 
     for (new i = 0; i < 16; i++) PlayerInfo[playerid][pSalt][i] = random(94) + 33;
     SHA256_PassHash(inputtext, PlayerInfo[playerid][pSalt], PlayerInfo[playerid][pPassword], 65);
 
     new query[221];
-    mysql_format(gSQL, query, sizeof query, "INSERT INTO `users` (`username`, `password`, `salt`) VALUES ('%e', '%s', '%e')", PlayerInfo[playerid][pName], PlayerInfo[playerid][pPassword], PlayerInfo[playerid][pSalt]);
+    mysql_format(gSQL, query, sizeof query, "INSERT INTO `users` (`Username`, `Password`, `Salt`) VALUES ('%e', '%s', '%e')", PlayerInfo[playerid][pName], PlayerInfo[playerid][pPassword], PlayerInfo[playerid][pSalt]);
     mysql_tquery(gSQL, query, "RegisterQuerys", "dd", playerid, 4);
     
     return true;
@@ -90,8 +88,8 @@ Dialog:DialogEmail(playerid, response, listitem, inputtext[]) {
     new len = strlen(inputtext);
     if(len > 250)
         return Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Email-ul introdus de tine este prea mare, te rugam sa introduci altul.", "Continua", "");
-
-    if(IsValidMailAddr(inputtext)) {
+ 
+    if(IsMail(inputtext)) {
         new email_escape[251];
         mysql_escape_string(inputtext, email_escape);
         format(PlayerInfo[playerid][pEmail], len+5, email_escape);
@@ -134,32 +132,35 @@ function FinishRegister(playerid) {
     LoadPlayerData(playerid, 0); // de pus la sfarsitul tutorialului
 }
 
-function RegisterQuerys(playerid, step) {
-    if(Iter_Contains(Player, playerid)) {
+function RegisterQuerys(playerid, step) { 
+    if(IsPlayerConnected(playerid)) {
         switch(step) {
-            case 1: // update email in db
-                Dialog_Show(playerid, DialogAge, DIALOG_STYLE_INPUT, "Varsta", "Te rugam sa iti introduci varsta ta.", "Continua", "");
-            case 2:
-                Dialog_Show(playerid, DialogSex, DIALOG_STYLE_MSGBOX, "Sex", "Te rugam sa iti alegi sex-ul.", "Baiat", "Fata");
-            case 3:
-                FinishRegister(playerid);
+            case 1: Dialog_Show(playerid, DialogAge, DIALOG_STYLE_INPUT, "Varsta", "Te rugam sa iti introduci varsta ta.", "Continua", "");
+            case 2: Dialog_Show(playerid, DialogSex, DIALOG_STYLE_MSGBOX, "Sex", "Te rugam sa iti alegi sex-ul.", "Baiat", "Fata");
+            case 3: FinishRegister(playerid);
             
             case 4: {
                 PlayerInfo[playerid][pSQLID] = cache_insert_id();
-     
+        
                 if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid); 
 
                 Dialog_Show(playerid, DialogEmail, DIALOG_STYLE_INPUT, "Email", "Pentru a putea sa iti resetezi parola in caz ca o uiti, te rugam sa introduci un mail.", "Continua", "");
             }
-        }
+            case 5: {
+                if(cache_num_rows() > 0) LoadPlayerData(playerid, 1);
+                else Dialog_Show(playerid, DialogLogin, DIALOG_STYLE_PASSWORD, "Login", "Wrong password!\nPlease enter your password in the field below:", "Login", "Abort");
+            }
+        } 
     }
 }
 
 function LoadPlayerData(playerid, login) {
 
     if(login == 1) {
-        cache_get_field_content(0, "email", PlayerInfo[playerid][pEmail]);
-        cache_get_field_content(0, "username", PlayerInfo[playerid][pUsername]);
+        stop LoginTimer[playerid]; 
+
+        cache_get_field_content(0, "Email", PlayerInfo[playerid][pEmail]);
+        cache_get_field_content(0, "Username", PlayerInfo[playerid][pUsername]);
     }
 
     if(!Iter_Contains(Player, playerid)) Iter_Add(Player, playerid); 

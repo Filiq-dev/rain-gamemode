@@ -481,7 +481,7 @@
 			<referrer name="@yH_OnPlayerDisconnect@001"/>
 			<referrer name="Iter_DestroyActor"/>
 			<referrer name="Iter_DestroyVehicle"/>
-			<referrer name="IsValidMailAddr"/>
+			<referrer name="IsMail"/>
 		</member>
 		<member name="C:true" value="1">
 			<tagname value="bool"/>
@@ -527,7 +527,7 @@
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="_Timer_D"/>
-			<referrer name="IsValidMailAddr"/>
+			<referrer name="IsMail"/>
 			<referrer name="CloseServer"/>
 			<referrer name="@yH_OnGameModeInit@003"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
@@ -723,6 +723,7 @@
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
 			<referrer name="_Timer_C"/>
+			<referrer name="CloseServer"/>
 			<referrer name="closeServer_yT@"/>
 			<referrer name="LoginTime_yT@"/>
 			<referrer name="OnPlayerDataLoaded"/>
@@ -853,6 +854,7 @@
 			<referrer name="Iter_AddStaticVehicle"/>
 			<referrer name="Iter_AddStaticVehicleEx"/>
 			<referrer name="Iter_DestroyVehicle"/>
+			<referrer name="CloseServer"/>
 			<referrer name="closeServer_yT@"/>
 			<referrer name="LoginTime_yT@"/>
 			<referrer name="OnPlayerDataLoaded"/>
@@ -861,7 +863,7 @@
 			<tagname value="Timer"/>
 			<referrer name="@yH_OnPlayerDisconnect@004"/>
 			<referrer name="OnPlayerDataLoaded"/>
-			<referrer name="dialog_DialogLogin"/>
+			<referrer name="LoadPlayerData"/>
 		</member>
 		<member name="F:NULL">
 		</member>
@@ -1480,6 +1482,7 @@
 			<referrer name="@yH_OnGameModeInit@003"/>
 			<referrer name="@yH_OnGameModeExit@003"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
 			<referrer name="dialog_DialogEmail"/>
 			<referrer name="dialog_DialogAge"/>
@@ -1574,6 +1577,16 @@
 		<member name="F:iterstart@Range">
 		</member>
 		<member name="F:iterstart@Until">
+		</member>
+		<member name="F:logo1">
+			<tagname value="Text"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<referrer name="@yH_OnPlayerConnect@004"/>
+		</member>
+		<member name="F:logo2">
+			<tagname value="Text"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<referrer name="@yH_OnPlayerConnect@004"/>
 		</member>
 		<member name="F:minute">
 			<referrer name="GeneralServerTimer"/>
@@ -2143,13 +2156,18 @@
 			<attribute name="public"/>
 			<stacksize value="5"/>
 			<dependency name="Date"/>
+			<dependency name="TextDrawAlignment"/>
+			<dependency name="TextDrawBackgroundColor"/>
 			<dependency name="TextDrawColor"/>
 			<dependency name="TextDrawCreate"/>
 			<dependency name="TextDrawFont"/>
 			<dependency name="TextDrawLetterSize"/>
 			<dependency name="TextDrawSetOutline"/>
+			<dependency name="TextDrawSetProportional"/>
 			<dependency name="TextDrawSetShadow"/>
 			<dependency name="Time"/>
+			<dependency name="logo1"/>
+			<dependency name="logo2"/>
 		</member>
 		<member name="M:@yH_OnGameModeInit@003" syntax="@yH_OnGameModeInit@003()">
 			<attribute name="public"/>
@@ -2203,8 +2221,11 @@
 			<dependency name="Iterator@Player"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="PlayerInfo"/>
+			<dependency name="TextDrawShowForPlayer"/>
 			<dependency name="gSQL"/>
 			<dependency name="g_MysqlRaceCheck"/>
+			<dependency name="logo1"/>
+			<dependency name="logo2"/>
 			<dependency name="mysql_format"/>
 			<dependency name="mysql_tquery"/>
 			<dependency name="pData"/>
@@ -5623,6 +5644,9 @@
 			<stacksize value="3"/>
 			<referrer name="@yH_OnGameModeInit@003"/>
 			<dependency name="DATABASE_ERROR"/>
+			<dependency name="I@"/>
+			<dependency name="J@"/>
+			<dependency name="closeServer_yT@"/>
 			<dependency name="print"/>
 			<dependency name="true"/>
 			<param name="error">
@@ -6699,7 +6723,6 @@
 		<member name="M:Dialog_Open" syntax="Dialog_Open(playerid, function[], style, caption[], info[], button1[], button2[])">
 			<stacksize value="10"/>
 			<referrer name="OnPlayerDataLoaded"/>
-			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
 			<referrer name="dialog_DialogEmail"/>
 			<referrer name="dialog_DialogAge"/>
@@ -9022,6 +9045,16 @@
 			</param>
 			<summary>  InterpolateColour(startcolor, endcolor, value, maxvalue, minvalue = 0);  </summary>            <remarks>  This function takes two endpoint values (minvalue and maxvalue, with  minvalue defaulting to 0), along with a third value (value) whose distance  between the two endpoints is calculated (as a percentage).  This percentage  value is then applied to the two colours given to find a third colour at  some point between those two colours.  For example, if the endpoints given are "0" and "10", and the value given is  "3", then that is "30%" of the way between the two endpoints.  We therefore  want to find a colour that is 30% of the way between the two given colours.  </remarks> 
 		</member>
+		<member name="M:IsMail" syntax="IsMail(email[])">
+			<stacksize value="4"/>
+			<referrer name="dialog_DialogEmail"/>
+			<dependency name="false"/>
+			<dependency name="strlen"/>
+			<dependency name="true"/>
+			<param name="email">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
 		<member name="M:IsOpcodeValid" syntax="IsOpcodeValid(opcode)">
 			<tagname value="bool"/>
 			<stacksize value="1"/>
@@ -9037,6 +9070,7 @@
 			<referrer name="SortArrayUsingCompInto_Entry"/>
 			<referrer name="@yH_OnScriptInit@001"/>
 			<referrer name="Iter_OPDCInternal"/>
+			<referrer name="RegisterQuerys"/>
 			<param name="playerid">
 			</param>
 		</member>
@@ -9126,16 +9160,6 @@
 			<attribute name="native"/>
 			<referrer name="@yH_OnScriptInit@001"/>
 			<param name="actorid">
-			</param>
-		</member>
-		<member name="M:IsValidMailAddr" syntax="IsValidMailAddr(addr[])">
-			<stacksize value="6"/>
-			<referrer name="dialog_DialogEmail"/>
-			<dependency name="false"/>
-			<dependency name="strlen"/>
-			<dependency name="true"/>
-			<param name="addr">
-				<paraminfo> [] </paraminfo>
 			</param>
 		</member>
 		<member name="M:Iter_ActorDo" syntax="Iter_ActorDo(add, actorid)">
@@ -10328,8 +10352,8 @@
 		<member name="M:LoadPlayerData" syntax="LoadPlayerData(playerid, login)">
 			<attribute name="public"/>
 			<stacksize value="15"/>
-			<referrer name="dialog_DialogLogin"/>
 			<referrer name="FinishRegister"/>
+			<referrer name="RegisterQuerys"/>
 			<dependency name="operator*(_no_itertag:,_:)"/>
 			<dependency name="Date"/>
 			<dependency name="FALSE"/>
@@ -10337,12 +10361,14 @@
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@Player"/>
 			<dependency name="Iterator@Player"/>
+			<dependency name="LoginTimer"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="SetSpawnInfo"/>
 			<dependency name="SpawnPlayer"/>
 			<dependency name="TextDrawShowForPlayer"/>
 			<dependency name="Time"/>
+			<dependency name="_Timer_F"/>
 			<dependency name="cache_get_field_content"/>
 			<dependency name="pEmail"/>
 			<dependency name="pName"/>
@@ -10968,7 +10994,6 @@
 			<dependency name="format"/>
 			<dependency name="g_MysqlRaceCheck"/>
 			<dependency name="pName"/>
-			<dependency name="pPassword"/>
 			<dependency name="pSalt"/>
 			<dependency name="true"/>
 			<param name="playerid">
@@ -11634,12 +11659,15 @@
 			<dependency name="Dialog_Open"/>
 			<dependency name="FALSE"/>
 			<dependency name="FinishRegister"/>
+			<dependency name="IsPlayerConnected"/>
 			<dependency name="Iter_Add_InternalC"/>
 			<dependency name="Iter_Contains_InternalC"/>
 			<dependency name="Iter_Single@Player"/>
 			<dependency name="Iterator@Player"/>
+			<dependency name="LoadPlayerData"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="PlayerInfo"/>
+			<dependency name="cache_get_row_count"/>
 			<dependency name="cache_insert_id"/>
 			<dependency name="pSQLID"/>
 			<param name="playerid">
@@ -12540,6 +12568,24 @@
 				<paraminfo> {_,Language,Bit,Text,Menu,Style,XML,Bintree,Group,Timer,File,Float,Text3D} </paraminfo>
 			</param>
 		</member>
+		<member name="M:TextDrawAlignment" syntax="TextDrawAlignment(text, alignment)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="alignment">
+			</param>
+		</member>
+		<member name="M:TextDrawBackgroundColor" syntax="TextDrawBackgroundColor(text, color)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+		</member>
 		<member name="M:TextDrawColor" syntax="TextDrawColor(text, color)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnGameModeInit@002"/>
@@ -12595,6 +12641,15 @@
 			<param name="size">
 			</param>
 		</member>
+		<member name="M:TextDrawSetProportional" syntax="TextDrawSetProportional(text, set)">
+			<attribute name="native"/>
+			<referrer name="@yH_OnGameModeInit@002"/>
+			<param name="text">
+				<paraminfo>Text </paraminfo>
+			</param>
+			<param name="set">
+			</param>
+		</member>
 		<member name="M:TextDrawSetShadow" syntax="TextDrawSetShadow(text, size)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnGameModeInit@002"/>
@@ -12616,6 +12671,7 @@
 		</member>
 		<member name="M:TextDrawShowForPlayer" syntax="TextDrawShowForPlayer(playerid, text)">
 			<attribute name="native"/>
+			<referrer name="@yH_OnPlayerConnect@004"/>
 			<referrer name="LoadPlayerData"/>
 			<param name="playerid">
 			</param>
@@ -13346,7 +13402,7 @@
 			<stacksize value="5"/>
 			<referrer name="_Timer_H"/>
 			<referrer name="@yH_OnPlayerDisconnect@004"/>
-			<referrer name="dialog_DialogLogin"/>
+			<referrer name="LoadPlayerData"/>
 			<dependency name="KillTimer"/>
 			<dependency name="Malloc_Free"/>
 			<dependency name="YSI_gMallocMemory"/>
@@ -13510,6 +13566,7 @@
 		<member name="M:cache_get_row_count" syntax="cache_get_row_count(connectionHandle)">
 			<attribute name="native"/>
 			<referrer name="OnPlayerDataLoaded"/>
+			<referrer name="RegisterQuerys"/>
 			<param name="connectionHandle">
 			</param>
 		</member>
@@ -13580,6 +13637,7 @@
 		</member>
 		<member name="M:closeServer_yT@" syntax="closeServer_yT@()">
 			<stacksize value="6"/>
+			<referrer name="CloseServer"/>
 			<dependency name="I@"/>
 			<dependency name="J@"/>
 			<dependency name="O@"/>
@@ -13654,7 +13712,7 @@
 			<attribute name="public"/>
 			<stacksize value="361"/>
 			<dependency name="Dialog_Open"/>
-			<dependency name="IsValidMailAddr"/>
+			<dependency name="IsMail"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="format"/>
@@ -13678,18 +13736,16 @@
 		</member>
 		<member name="M:dialog_DialogLogin" syntax="dialog_DialogLogin(playerid, response, listitem, inputtext[])">
 			<attribute name="public"/>
-			<stacksize value="75"/>
-			<dependency name="Dialog_Open"/>
+			<stacksize value="224"/>
 			<dependency name="Kick"/>
-			<dependency name="LoadPlayerData"/>
-			<dependency name="LoginTimer"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="PlayerInfo"/>
 			<dependency name="SHA256_PassHash"/>
-			<dependency name="_Timer_F"/>
-			<dependency name="pPassword"/>
+			<dependency name="gSQL"/>
+			<dependency name="mysql_format"/>
+			<dependency name="mysql_tquery"/>
+			<dependency name="pName"/>
 			<dependency name="pSalt"/>
-			<dependency name="strcmp"/>
 			<dependency name="true"/>
 			<param name="playerid">
 			</param>
@@ -14347,6 +14403,7 @@
 		<member name="M:mysql_format" syntax="mysql_format(connectionHandle, output[], len, format[], ...)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
 			<referrer name="dialog_DialogEmail"/>
 			<referrer name="dialog_DialogAge"/>
@@ -14378,6 +14435,7 @@
 		<member name="M:mysql_tquery" syntax="mysql_tquery(connectionHandle, query[], callback[], format[], ...)">
 			<attribute name="native"/>
 			<referrer name="@yH_OnPlayerConnect@004"/>
+			<referrer name="dialog_DialogLogin"/>
 			<referrer name="dialog_DialogRegister"/>
 			<referrer name="dialog_DialogEmail"/>
 			<referrer name="dialog_DialogAge"/>
@@ -14602,7 +14660,6 @@
 			<referrer name="LevenshteinDistance"/>
 			<referrer name="_SortDeepArray"/>
 			<referrer name="Hooks_GetAllHooks"/>
-			<referrer name="dialog_DialogLogin"/>
 			<param name="string1">
 				<paraminfo> [] </paraminfo>
 			</param>
@@ -14705,7 +14762,7 @@
 			<referrer name="Hooks_Collate"/>
 			<referrer name="_Hooks_AddReplacement"/>
 			<referrer name="_Timer_S"/>
-			<referrer name="IsValidMailAddr"/>
+			<referrer name="IsMail"/>
 			<referrer name="dialog_DialogRegister"/>
 			<referrer name="dialog_DialogEmail"/>
 			<param name="string">

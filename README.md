@@ -2,6 +2,7 @@
 - gamemodes
   - main.pwn
     - utils
+      - header.pwn
       - defines.pwn
       - colour.pwn
       - gui.pwn
@@ -28,29 +29,68 @@
   - ❌ De facut.
 
   - [✔] Conexiunea cu baza de date
-  - [✅] Login si register.
-     - [✅] Daca nu te loghezi in 30 de secunde primesti kick.
+  - [✔] Login si register.
+     - [✔] Daca nu te loghezi in 30 de secunde primesti kick.
      - [❌] De facut etapele inregistrarii.
-       - [✅] Email.
-       - [✅] Varsta.
-       - [✅] Sex.
+       - [✔] Email.
+       - [✔] Varsta.
+       - [✔] Sex.
        - [❌] Refferal.
-     - [✅] Incarcarea datelor din baza de date.
-  - [✅] Adaugata data si ora.
-  - [❌] De testat tot ce s-a facut pana acum.
-  - [❌] Logo in dreapta cu nume.
-  - [❌] Licente pentru: - Arme
+     - [✔] Incarcarea datelor din baza de date.
+  - [✔] Adaugata data si ora.
+  - [✔] Rezolvat un bug la sistemul de logare.
+  - [✅] Facuta baza de date.
+  - [✔] De testat tot ce s-a facut pana acum.
+  - [✅] Logo in dreapta cu nume.
+  - [❌] De facut procesorul de comenzi.
+  - [❌] Incarcarea masinilor din baza de date.
+  - [❌] Speedometer ul la masini.
+  - [❌] Fuel la masini.
+  - [❌] Sistemul de admini si helperi.
+  - [❌] Sistem de level pe experienta.
+    - [❌] Cand te plimbi primesti x experienta.
+    - [❌] Cand faci activitati precum, job, jocuri de noroc, curse etc. primesti x experienta.
+    - [❌] Cand castigi paintball-ul primesti x experienta.
+    - [❌] Cand comunici cu cineva pe chat primesti x experienta.
+    - [❌] Cand indeplinesti realizarile pe ziua respectiva sau deblochezi o realizare, primesti x experienta.
+    - [❌] Cand jefuiesti o banca primesti x experienta. 
+    - [❌] La payday primesti x experienta.
+  - [❌] Poti avea mai mult de 2 miliarde in mana. 
+  - [❌] Sistemul de report.
+  - [❌] Sistemul de newbie.
+  - [❌] Sistemul de case.
+    - [❌] Ca admin poti creea, muta sau sterge o casa.
+    - [❌] Poti intra intr-o casa.
+    - [❌] Poti cumpara o casa.
+    - [❌] Fiecare proprietar de case isi poate schimba interiorul in functie de casa.
+    - [❌] Un jucator poate avea pana la 2 case.
+    - [❌] Pentru a putea cumpara o casa ai nevoie de minim level 3 pentru casele small, 5 casele medium si 10 pentru cele big.
+    - [❌] Casele pot fi vandute de proprietar catre alt player.
+    - [❌] Casele pot fi scoase la vanzare si oricine le poate cumpara.
+    - [❌] Casele pot avea chiriasi daca proprietarul permite asta.
+    - [❌] Casele pot avea un radio si frigider.  
+    - [❌] Fiecare proprietar poate sa isi modifice pretul de la chirie si la fiecare payday primeste acea suma de bani de la chiriasi.
+  - [❌] Sistemul de biz-uri.
+    - [❌] Ca admin poti crea, muta sau sterge un biz.
+    - [❌] Poti intra intr-un biz.
+    - [❌] Poti cumpara un biz.
+    - [❌] Un jucator poate avea pana la 3 afaceri.
+    - [❌] Pentru a cumpara un biz ai nevoie de minim level 10.
+    - [❌] Afacerile pot fi vandute catre alt player.
+    - [❌] Afacerile pot fi scoase la vanzare si oricine le poate cumpara.
+    - [❌] Fiecare afacere are cate un stoc de produse, acest stoc se poate reumple doar daca sunt jucatori care lucreaza la jobul 'trucker' si fiecare propietar poate sa isi modifice preturile marfii.
+  - [❌] 
+  - [❌] Licente pentru: - Arme.
                           - Masina.
                           - Barca.
                           - Avion.
-  - [❌] De facut procesorul de comenzi.
   - [❌] DMV System.
   - [❌] De facut setarile serverului pe SQL.
   - [❌] De setat spawn-ul.
 
 - Pasii inregistrarii: 
   - Iti introduci o parola ->
-    - Se creaza contul in data de baza, dupa ce s-a introdus contul in baza de date ->
+    - Se creaza contul in baza de date, dupa ce s-a introdus contul in baza de date ->
       - Introduci email-ul, dupa ce s-a introdus mail-ul in baza de date ->
         - Iti introduci varsta, dupa ce s-a introdus varsta in baza de date ->
           - Iti alegi sex-ul, dupa ce s-a introdus sex-ul in baza de date ->

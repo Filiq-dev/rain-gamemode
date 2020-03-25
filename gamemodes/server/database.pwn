@@ -4,12 +4,12 @@ hook OnGameModeInit() {
 
     mysql_log(LOG_ALL, LOG_TYPE_HTML);
     
-    gSQL = mysql_connect("localhost", "root", "", "rain-sql");
+    gSQL = mysql_connect("localhost", "root", "rain-sql", "");
 
     if(gSQL == -1 || mysql_errno(gSQL) != 0)
         return CloseServer(DATABASE_ERROR);
 
-    printf("Am incarcat cu succes baza de date in %dms.", GetTickCount() - oldtick);
+    printf("Am incarcat cu succes baza de date in %d ms.", (GetTickCount() - oldtick));
 
     return true;
 }
